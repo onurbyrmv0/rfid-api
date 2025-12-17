@@ -1,0 +1,14 @@
+[Unit]
+Description=RFID Attendance Client
+After=network.target
+
+[Service]
+# Replace 'pi' with your actual username if different
+User=pi
+WorkingDirectory=/home/pi/rfid-api
+ExecStart=/usr/bin/python3 /home/pi/rfid-api/rfid_sender.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
