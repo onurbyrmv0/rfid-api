@@ -36,6 +36,10 @@ def verify_password(username, password):
 
 # --- API Endpoints ---
 
+@app.route('/')
+def index():
+    return redirect(url_for('dashboard'))
+
 @app.route('/scan', methods=['POST'])
 def scan_card():
     data = request.json
