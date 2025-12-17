@@ -1,0 +1,16 @@
+# Environment variables (Sensitive data!)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+
+# Docker
+postgres_data/
+
+# OS specific
+.DS_Store
+Thumbs.db
