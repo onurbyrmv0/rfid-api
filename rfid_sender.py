@@ -45,10 +45,14 @@ def main():
                 payload = {'uid': str(card_id).strip()}
                 print("Sending to server...", end="")
                 
-                # We use a short timeout so we don't hang if server is down, 
-                # but the prompt implies we "Do not wait for server response" for the BEEP. 
-                # The beep is already done. Now we just send.
-                response = requests.post(SCAN_ENDPOINT, json=payload, timeout=2)
+                # Cloudflare requires a User-Agent to not block as a bot
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Raspberry Pi; RFID Client)',
+                    'Content-Type': 'application/json'
+                }
+                
+                # We use a short timeout so we don't hang if server is down
+                response = requests.post(SCAN_ENDPOINT, json=payload, headers=headers, timeout=5)
                 
                 if response.status_code == 201:
                     print(f" [SUCCESS] {response.json().get('message')}")
